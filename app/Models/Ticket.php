@@ -8,31 +8,25 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class Event extends Model
+class Ticket extends Model
 {
     use HasFactory;
     use HasUlids;
 
     protected $fillable = [
         'name',
+        'price',
         'description',
-        'flyer',
-        'place_name',
-        'place_address',
-        'place_location',
-        'guest_stars',
-        'event_date',
-        'time_start',
-        'time_end',
+        'discount'
     ];
-
-    public function users(): BelongsTo
+    
+    public function events(): BelongsTo
     {
-        return $this->belongsTo(User::class, 'user_id', 'id');
+        return $this->belongsTo(Event::class, 'event_id', 'id');
     }
 
-    public function tickets(): HasMany
+    public function purchases(): HasMany
     {
-        return $this->hasMany(Ticket::class, 'event_id', 'id');
+        return $this->hasMany(Purchase::class, 'ticket_id', 'id');
     }
 }
