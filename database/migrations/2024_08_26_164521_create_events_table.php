@@ -12,11 +12,18 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('events', function (Blueprint $table) {
-            $table->ulid('id');
+            $table->ulid('id')->primary();
             $table->foreignUlid('user_id');
             $table->string('name', 200);
             $table->text('description');
-            $table->json('data');
+            $table->string('flyer', 200);
+            $table->string('place_name', 200);
+            $table->text('place_address');
+            $table->json('place_location');
+            $table->json('guest_stars');
+            $table->date('event_date');
+            $table->time('time_start');
+            $table->time('time_end');
             $table->timestamps();
         });
     }
