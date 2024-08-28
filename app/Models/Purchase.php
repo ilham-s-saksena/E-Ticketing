@@ -13,6 +13,13 @@ class Purchase extends Model
     use HasFactory;
     use HasUlids;
 
+    protected $fillable = [
+        'ticket_id',
+        'buyer_id',
+        'qty',
+        'payment_gateway'
+    ];
+
     public function tickets(): BelongsTo
     {
         return $this->belongsTo(Ticket::class, 'ticket_id', 'id');

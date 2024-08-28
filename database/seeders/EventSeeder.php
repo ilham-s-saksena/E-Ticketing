@@ -12,7 +12,7 @@ class EventSeeder extends Seeder
     {
         $users = User::all();
         foreach ($users as $user) {
-            Event::factory()->create([
+            Event::factory(3)->create([
                 "user_id" => $user->id
             ]);
         }

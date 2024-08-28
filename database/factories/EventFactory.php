@@ -15,8 +15,8 @@ class EventFactory extends Factory
             'place_name' => 'Gor '. fake()->name(),
             'place_address' => fake()->address(),
             'place_location' => json_encode([
-                "longitude" => 109.01023,
-                "latitude" => -7.918365
+                "longitude" => 109.2361473,
+                "latitude" => -7.4254167
             ]),
             "guest_stars" => json_encode([fake()->name(), fake()->name(), fake()->name()]),
             "event_date" => now()->addDays(rand(10, 26)),

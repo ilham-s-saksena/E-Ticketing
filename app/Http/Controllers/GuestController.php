@@ -7,8 +7,12 @@ use Illuminate\Http\Request;
 
 class GuestController extends Controller
 {
-    public function index(EventService $eventService) {
-        $events = $eventService->index(); 
+    public function index(Request $request, EventService $eventService) {
+        if (isset($request->search)) {
+            $events = $eventService->search($request->search);
+        } else {
+            $events = $eventService->index(); 
+        }
         return view('welcome', compact('events'));
     }
 }

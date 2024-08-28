@@ -15,7 +15,8 @@ return new class extends Migration
             $table->ulid('id')->primary();
             $table->foreignUlid('ticket_id')->references('id')->on('tickets');
             $table->foreignUlid('buyer_id')->references('id')->on('buyers');
-            $table->string('midtrans_id', 250);
+            $table->integer('qty');
+            $table->string('payment_gateway');
             $table->enum('status', ['unpaid', 'paid', 'experied'])->default('unpaid');
             $table->timestamps();
         });

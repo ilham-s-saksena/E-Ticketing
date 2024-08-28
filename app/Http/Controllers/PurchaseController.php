@@ -2,64 +2,26 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Purchase;
+use App\Services\BuyerService;
+use App\Services\PurchaseService;
 use Illuminate\Http\Request;
 
 class PurchaseController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    
+    public function purchase(
+        Request $request, 
+        BuyerService $buyerService, 
+        PurchaseService $purchaseService
+        )
     {
-        //
+        $buyer = $buyerService->create($request->name, $request->email, $request->phone);
+        $purchaseService->create($request->tickets, $buyer->id, $request->input('payment-method'));
+        
+        $purchaseService->sendMail($buyer->email, $buyer->name);
+        
+        dd($request->all());
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Purchase $purchase)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Purchase $purchase)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Purchase $purchase)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Purchase $purchase)
-    {
-        //
-    }
+    
 }
