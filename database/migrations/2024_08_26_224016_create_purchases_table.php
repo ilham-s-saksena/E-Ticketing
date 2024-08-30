@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreignUlid('ticket_id')->references('id')->on('tickets');
             $table->foreignUlid('buyer_id')->references('id')->on('buyers');
             $table->integer('qty');
-            $table->string('payment_gateway', 250);
+            $table->string('token', 250);
             $table->enum('status', ['unpaid', 'paid', 'experied'])->default('unpaid');
             $table->timestamps();
         });
