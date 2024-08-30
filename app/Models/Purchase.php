@@ -17,7 +17,7 @@ class Purchase extends Model
         'ticket_id',
         'buyer_id',
         'qty',
-        'payment_gateway'
+        'token'
     ];
 
     public function tickets(): BelongsTo
