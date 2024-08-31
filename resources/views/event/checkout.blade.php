@@ -10,7 +10,8 @@
 
 
 <section class="bg-white py-8 antialiased dark:bg-gray-900 md:py-16">
-  <form action="{{route('purchase')}}" method="post" class="mx-auto max-w-screen-xl px-4 2xl:px-0">
+
+  <form id="purchaseForm" action="{{route('purchase')}}" method="post" class="mx-auto max-w-screen-xl px-4 2xl:px-0">
     @csrf
 
     <div class="mt-6 sm:mt-8 lg:flex lg:items-start lg:gap-12 xl:gap-16">
@@ -150,41 +151,6 @@
           @endforeach
         </div>
 
-        <div class="space-y-4">
-          <h3 class="text-xl font-semibold text-gray-900 dark:text-white">Payment</h3>
-
-          <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
-            <div class="rounded-lg border border-gray-200 bg-gray-50 p-4 ps-4 dark:border-gray-700 dark:bg-gray-800">
-              <div class="flex items-start">
-                <div class="flex h-5 items-center">
-                  <input id="qris" aria-describedby="qris-text" type="radio" name="payment-method" value="qris" class="h-4 w-4 border-gray-300 bg-white text-blue-600 focus:ring-2 focus:ring-blue-600 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-blue-600" checked />
-                </div>
-
-                <div class="ms-4 text-sm">
-                  <label for="qris" class="font-medium leading-none text-gray-900 dark:text-white"> QRIS </label>
-                  <p id="qris-text" class="mt-1 text-xs font-normal text-gray-500 dark:text-gray-400">Bayar pake QRIS</p>
-                </div>
-              </div>
-
-            </div>
-
-            <div class="rounded-lg border border-gray-200 bg-gray-50 p-4 ps-4 dark:border-gray-700 dark:bg-gray-800">
-              <div class="flex items-start">
-                <div class="flex h-5 items-center">
-                  <input id="pay-on-delivery" aria-describedby="pay-on-delivery-text" type="radio" name="payment-method" value="" class="h-4 w-4 border-gray-300 bg-white text-blue-600 focus:ring-2 focus:ring-blue-600 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-blue-600" />
-                </div>
-
-                <div class="ms-4 text-sm">
-                  <label for="pay-on-delivery" class="font-medium leading-none text-gray-900 dark:text-white"> Transfer Bank </label>
-                  <p id="pay-on-delivery-text" class="mt-1 text-xs font-normal text-gray-500 dark:text-gray-400">Transfer via Virtual Account</p>
-                </div>
-              </div>
-
-            </div>
-
-          </div>
-        </div>
-
         <div class="flow-root rounded-lg border border-gray-200 bg-gray-50 p-4 ps-4 dark:border-gray-700 dark:bg-gray-800">
           <div class="-my-3 divide-y divide-gray-200 dark:divide-gray-800">
             <dl class="flex items-center justify-between gap-4 py-3">
@@ -205,8 +171,9 @@
         </div>
 
         <div class="space-y-3">
-          <button type="button" data-modal-target="popup-modal" data-modal-toggle="popup-modal" class="flex w-full items-center justify-center rounded-lg bg-blue-700 px-5 py-2.5 text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4  focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Proses Pembayaran</button>
-
+          <button type="button" data-modal-target="popup-modal" data-modal-toggle="popup-modal" class="flex w-full items-center justify-center rounded-lg bg-blue-700 px-5 py-2.5 text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4  focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" >
+              Proses Pembayaran
+          </button>
           <p class="text-sm font-normal text-gray-500 dark:text-gray-400">Detail Pembayaran akan dikirim ke Email kamu. <span class="font-medium text-blue-700 dark:text-blue-500">Mohon periksa email secara berkala, termasuk folder Spam.</span></p>
         </div>
 
@@ -224,9 +191,14 @@
                 <svg class="mx-auto mb-4 w-16 h-16 text-gray-400 dark:text-gray-200 border-gray-400 dark:border-gray-200 border-2 p-2 rounded-full" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 0 0-16.536-1.84M7.5 14.25 5.106 5.272M6 20.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm12.75 0a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z" />
                 </svg>
-
-                <h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">Detail Pembayaran akan dikirim ke Email kamu. <span class="text-blue-700 dark:text-blue-500">Mohon periksa email secara berkala, termasuk folder Spam.</span></h3>
-                <button type="submit" class="text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center">
+                <p id="invalidInput" style="display: none;" class="mb-5 bg-red-100 text-red-600">Pastikan semua form input sudah terisi ya, seperti nama, email dan nomor ponsel</p>
+                <h3 id="modalMessage" class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">Detail Pembayaran akan dikirim ke Email kamu. <span class="text-blue-700 dark:text-blue-500">Mohon periksa email secara berkala, termasuk folder Spam.</span></h3>
+                  <div id="alert-3" class="flex items-center mb-5 justify-center text-lg p-2 mb-2 rounded-lg text-green-800 bg-green-50 dark:bg-gray-800 dark:text-green-400" role="alert" style="display:none;">
+                    <div class="text-lg font-bold alert text-center">
+                      <!-- Pesan akan dimasukkan di sini oleh JavaScript -->
+                    </div>
+                  </div>
+                <button type="button" id="submitButton" class="text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center">
                     Lanjutkan Pembelian
                 </button>
                 <button data-modal-hide="popup-modal" type="button" class="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Batal</button>
@@ -240,6 +212,91 @@
     </div>
   </form>
 </section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const submitButton = document.getElementById('submitButton');
+    const alertBox = document.getElementById('alert-3');
+    const alertMessage = alertBox.querySelector('.text-lg.font-bold.alert.text-center');
+    const alertIcon = alertBox.querySelector('svg');
+    const modalMessage = document.getElementById('modalMessage');
+    
+    alertBox.style.display = 'none'; // Sembunyikan alert pada awalnya
+
+    const form = document.getElementById('purchaseForm');
+    const inputs = form.querySelectorAll('input[required]');
+
+    // Fungsi untuk memeriksa apakah semua input yang diperlukan telah diisi
+    function checkFormValidity() {
+      let isValid = true;
+      inputs.forEach(input => {
+        if (!input.value.trim()) {
+          isValid = false;
+          document.getElementById('invalidInput').style.display = "none";
+        }else{
+            document.getElementById('invalidInput').style.display = "flex";
+        }
+      });
+      submitButton.disabled = !isValid; // Disable tombol submit jika form tidak valid
+    }
+
+    // Cek validitas form saat halaman dimuat dan saat input berubah
+    checkFormValidity();
+    inputs.forEach(input => {
+      input.addEventListener('input', checkFormValidity);
+    });
+
+    submitButton.addEventListener('click', function () {
+        // Tampilkan loading pada tombol submit
+        submitButton.disabled = true;
+        submitButton.innerHTML = `
+            <svg class="animate-spin h-5 w-5 mr-3 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path>
+            </svg>
+            Processing...
+        `;
+
+        const formData = new FormData(form);
+        
+        // Kirim data menggunakan fetch
+        fetch(form.action, {
+            method: form.method,
+            headers: {
+                'X-CSRF-TOKEN': document.querySelector('input[name="_token"]').value,
+            },
+            body: formData,
+        })
+        .then(response => response.json())
+        .then(data => {
+            submitButton.disabled = false;
+            submitButton.innerHTML = 'Proses Pembayaran';
+
+            alertMessage.textContent = data.message;
+
+            if (data.success) {
+                alertBox.classList.remove('text-red-800', 'bg-red-50');
+                alertBox.classList.add('text-green-800', 'bg-green-50');
+            } else {
+                alertBox.classList.remove('text-green-800', 'bg-green-50');
+                alertBox.classList.add('text-red-800', 'bg-red-50');
+            }
+            modalMessage.style.display = 'none';
+            alertBox.style.display = 'flex';
+        })
+        .catch((error) => {
+            submitButton.disabled = false;
+            submitButton.innerHTML = 'Proses Pembayaran';
+
+            alertMessage.textContent = 'Terjadi kesalahan. Silakan coba lagi.';
+            alertBox.classList.remove('text-green-800', 'bg-green-50');
+            alertBox.classList.add('text-red-800', 'bg-red-50');
+            modalMessage.style.display = 'none';
+            alertBox.style.display = 'flex';
+        });
+    });
+});
+</script>
 
 </body>
 </html>

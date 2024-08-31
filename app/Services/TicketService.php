@@ -12,5 +12,11 @@ class TicketService
         }
         return $ticket;
     }
+
+    public function find($ticket_id){
+        return Ticket::find($ticket_id);
+    }
+
+    
     
 }
