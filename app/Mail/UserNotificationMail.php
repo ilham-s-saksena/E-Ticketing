@@ -5,24 +5,33 @@ namespace App\Mail;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
-use Illuminate\Contracts\Queue\ShouldQueue;
 
 class UserNotificationMail extends Mailable
 {
     use Queueable, SerializesModels;
 
     public $name;
-    public $messageContent;
+    public $email;
+    public $eventId;
+    public $token;
+    public $total;
+    public $order;
+    public $tickets;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($name, $messageContent)
+    public function __construct($name, $email, $eventId, $token, $total, $order, $tickets)
     {
         $this->name = $name;
-        $this->messageContent = $messageContent;
+        $this->email = $email;
+        $this->eventId = $eventId;
+        $this->token = $token;
+        $this->total = $total;
+        $this->order = $order;
+        $this->tickets = $tickets;
     }
 
     /**
@@ -35,7 +44,13 @@ class UserNotificationMail extends Mailable
         return $this->view('emails.user_notification')
                     ->with([
                         'name' => $this->name,
-                        'content' => $this->messageContent,
+                        'eventId' => $this->eventId,
+                        'token' => $this->token,
+                        'email' => $this->email,
+                        'domain' => url('/'), // Jika perlu URL domain
+                        'total' => $this->total,
+                        'order' => $this->order,
+                        'tickets' => $this->tickets,
                     ]);
     }
 }

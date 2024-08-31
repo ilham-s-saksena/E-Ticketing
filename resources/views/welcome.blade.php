@@ -11,6 +11,7 @@
 
         <!-- Styles -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
+        <link rel="shortcut icon" href="./favicon.png" type="image/png">
     </head>
     <body class="antialiased font-sans">
 
