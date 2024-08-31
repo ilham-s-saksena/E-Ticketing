@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('event_accesses', function (Blueprint $table) {
-            $table->ulid()->primary();
+            $table->ulid('id')->primary();
             $table->foreignUlid('purchase_id')->references('id')->on('purchases');
             $table->string('qr');
             $table->boolean('isEntry')->default(false);

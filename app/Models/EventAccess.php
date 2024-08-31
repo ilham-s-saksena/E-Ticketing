@@ -12,6 +12,12 @@ class EventAccess extends Model
     use HasFactory;
     use HasUlids;
 
+    protected $fillable = [
+        'purchase_id',
+        'qr',
+        'isEntry',
+    ];
+
     public function purchases(): BelongsTo
     {
         return $this->belongsTo(Purchase::class, 'purchase_id', 'id');
