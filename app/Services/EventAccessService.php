@@ -3,6 +3,8 @@
 namespace App\Services;
 
 use App\Models\EventAccess;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
+use Illuminate\Support\Facades\Storage;
 
 class EventAccessService
 {
@@ -11,12 +13,20 @@ class EventAccessService
         foreach ($purchases as $purchase) {
             if ($purchase->status == 'paid' && $purchase->eventAccesses->isEmpty()) {
                 for ($i = 1; $i <= $purchase->qty; $i++) {
-                    EventAccess::create([  
+                    $eventAccess = EventAccess::create([  
                         "purchase_id" => $purchase->id,
-                        //need to generate Qr Code
-                        "qr" => "path/to/qrcode.png",
+                        "qr" => "path",
                         "isEntry" => false,
                     ]);
+                    $qrCode = QrCode::format('png')
+                    ->size(300)
+                    ->backgroundColor(255, 255, 244)
+                    ->margin(3)
+                    ->generate($eventAccess->id);
+                    $fileName = $purchase->tickets->events->id."/".$eventAccess->id.".png";
+                    Storage::put($fileName, $qrCode);
+                    $eventAccess->qr = $fileName;
+                    $eventAccess->save();
                 }
             }
             $purchaseId[] = $purchase->id;

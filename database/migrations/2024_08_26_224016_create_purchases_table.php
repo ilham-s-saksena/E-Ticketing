@@ -18,6 +18,7 @@ return new class extends Migration
             $table->integer('qty');
             $table->string('token', 250);
             $table->enum('status', ['unpaid', 'paid', 'experied'])->default('unpaid');
+            $table->boolean('isSended')->default(false);
             $table->timestamps();
         });
     }

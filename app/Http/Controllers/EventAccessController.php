@@ -6,6 +6,8 @@ use App\Models\EventAccess;
 use App\Services\EventAccessService;
 use App\Services\PurchaseService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Mail;
 
 class EventAccessController extends Controller
 {
@@ -17,16 +19,45 @@ class EventAccessController extends Controller
         )
     {
         $purchases = $purchaseService->findWithToken($token);
-        if ($request->query('result')) {   
-            $resultJson = $request->query('result');
-            $result = json_decode($resultJson, true);
-            if ($result['transaction_status'] == "settlement") {
-                $purchaseService->updatePaidPurchases($purchases);
-            }
-        }
+        $purchaseService->updatePaidPurchases($purchases);
         $eventAccess = $eventAccessService->generate($purchases);
-        dd($eventAccess);
-        return view('eventaccess.index');
+
+        return view('eventaccess.index', compact('eventAccess'));
+    }
+
+    public function uploadTicketImage(
+        Request $request,
+        PurchaseService $purchaseService
+        )
+    {
+        try {
+        $images = $request->input('images');
+        $email = $request->input('email');
+        $purchaseId = $request->input('purchase_id');
+
+        $attachments = [];
+
+        foreach ($images as $imageData) {
+            $imagePath = storage_path('app/public/tickets/' . uniqid() . '.png');
+            $imageData = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $imageData));
+            file_put_contents($imagePath, $imageData);
+            $attachments[] = $imagePath;
+        }
+
+        // Kirim email dengan semua lampiran gambar
+        Mail::send('emails.ticket', [], function ($message) use ($email, $attachments) {
+            $message->to($email)
+                    ->subject('Tiket Anda');
+            foreach ($attachments as $filePath) {
+                $message->attach($filePath);
+            }
+        });
+
+        $purchaseService->updateSendedTicket($purchaseId);
+            return response()->json(['success' => true, 'message' => 'All tickets sent successfully!']);
+        } catch (\Exception $e) {
+            return response()->json(['success' => false, 'message' => 'Failed to send tickets. Please try again.']);
+        }
     }
 
     /**

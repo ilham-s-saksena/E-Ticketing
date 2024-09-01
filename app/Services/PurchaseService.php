@@ -83,5 +83,11 @@ class PurchaseService
             $purchase->save();
         }
     }
+
+    public function updateSendedTicket($purchaseId){
+        $purchase = Purchase::find($purchaseId);
+        $purchase->isSended = true;
+        $purchase->save();
+    }
     
 }
