@@ -42,6 +42,7 @@ class UserNotificationMail extends Mailable
     public function build()
     {
         return $this->view('emails.user_notification')
+                    ->subject('E-Ticketing Invoice')
                     ->with([
                         'name' => $this->name,
                         'eventId' => $this->eventId,

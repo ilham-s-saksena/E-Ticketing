@@ -27,7 +27,7 @@ class Purchase extends Model
 
     public function buyers(): BelongsTo
     {
-        return $this->belongsTo(Buyer::class, 'ticket_id', 'id');
+        return $this->belongsTo(Buyer::class, 'buyer_id', 'id');
     }
 
     public function eventAccesses(): HasMany
