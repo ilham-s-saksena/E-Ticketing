@@ -13,8 +13,8 @@
     $total  = 0;
 @endphp
 
-<section class="bg-white px-4 py-8 antialiased dark:bg-gray-900">
-  <div class="mx-auto grid max-w-screen-xl rounded-lg bg-gray-50 p-2 dark:bg-gray-800 lg:grid-cols-12 lg:gap-4 lg:p-4 xl:gap-4 shadow place-items-center">
+<section class="bg-white px-4 py-8 antialiased dark:bg-gray-900 ">
+  <div class="mx-auto grid max-w-xl rounded-lg bg-gray-50 p-2 dark:bg-gray-800 lg:grid-cols-12 lg:gap-4 lg:p-4 xl:gap-4 shadow place-items-center">
     <div class="lg:col-span-5 lg:mt-0">
       <a href="#">
         <img class=" h-56 w-56 rounded shadow" src="https://flowbite.s3.amazonaws.com/blocks/e-commerce/imac-components.svg" alt="peripherals" />
@@ -24,9 +24,6 @@
       <h1 class="mb-3 text-2xl font-bold leading-tight tracking-tight text-gray-900 dark:text-white md:text-4xl">
         {{ $event->name }}
       </h1>
-      <p class="mb-2 text-gray-500 dark:text-gray-400">
-        {{ $event->description }}
-      </p>
 
       <ul class="flex items-center space-x-2 mb-3">
         <li class="font-bold text-gray-700">
@@ -70,8 +67,6 @@
             {{ $event->time_start }} - {{ $event->time_end }} 
         </li>
     </ul>
-
-      <a href="/event/{{$event->id}}" class="inline-flex items-center justify-center rounded-lg bg-blue-700 px-5 py-3 text-center text-base font-medium text-white hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-900"> See Event Details </a>
     </div>
     
   </div>
@@ -152,8 +147,6 @@
           </div>
         </div>
         @endif
-            
-        <pre><div id="result-json">JSON result will appear here after payment:<br></div></pre> 
   </div>
 </section>
 
@@ -164,15 +157,17 @@
         snap.pay('{{$token}}', {
           onSuccess: function(result){
             const resultJson = encodeURIComponent(JSON.stringify(result));
-            window.location.href = `{{ route('pay-success', $token) }}?result=${resultJson}`;
+            window.location.href = `{{ route('pay-success', $token) }}`;
           },
           // Optional
           onPending: function(result){
-            /* You may add your own js here, this is just example */ document.getElementById('result-json').innerHTML += JSON.stringify(result, null, 2);
+            /* You may add your own js here, this is just example */ 
+            // document.getElementById('result-json').innerHTML += JSON.stringify(result, null, 2);
           },
           // Optional
           onError: function(result){
-            /* You may add your own js here, this is just example */ document.getElementById('result-json').innerHTML += JSON.stringify(result, null, 2);
+            /* You may add your own js here, this is just example */ 
+            // document.getElementById('result-json').innerHTML += JSON.stringify(result, null, 2);
           }
         });
       };
