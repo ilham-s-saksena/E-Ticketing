@@ -26,9 +26,9 @@ class Event extends Model
         'time_end',
     ];
 
-    public function users(): BelongsTo
+    public function organizations(): BelongsTo
     {
-        return $this->belongsTo(User::class, 'user_id', 'id');
+        return $this->belongsTo(Organization::class, 'organization_id', 'id');
     }
 
     public function tickets(): HasMany

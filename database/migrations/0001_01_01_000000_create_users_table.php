@@ -13,8 +13,10 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->ulid('id')->primary();
+            $table->foreignUlid('organization_id')->nullable();
             $table->string('name', 200);
             $table->string('email', 200)->unique();
+            $table->enum('role', ['admin'])->default('admin');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password', 250);
             $table->string('avatar', 250)->nullable();
