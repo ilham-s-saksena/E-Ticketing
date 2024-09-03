@@ -7,3 +7,6 @@ Route::controller(GuestController::class)
         Route::get('/', 'index');
 
     });
+// Route::get('/', function () {
+//     return view('welcome');
+// });

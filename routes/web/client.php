@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 
-Route::view('dashboard', 'dashboard')
+Route::view('dashboard', 'users.dashboard')
     ->middleware(['auth', 'verified'])
     ->name('dashboard');
 
