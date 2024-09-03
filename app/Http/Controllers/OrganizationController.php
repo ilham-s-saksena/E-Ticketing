@@ -2,15 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Ticket;
+use App\Models\Organization;
 use Illuminate\Http\Request;
 
-class TicketController extends Controller
+class OrganizationController extends Controller
 {
-
-    public function ticket()
+    /**
+     * Display a listing of the resource.
+     */
+    public function organization()
     {
-        return view('users.ticket');
+        return view('users.organization');
     }
 
     /**
@@ -32,7 +34,7 @@ class TicketController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Ticket $ticket)
+    public function show(Organization $organization)
     {
         //
     }
@@ -40,7 +42,7 @@ class TicketController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Ticket $ticket)
+    public function edit(Organization $organization)
     {
         //
     }
@@ -48,7 +50,7 @@ class TicketController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Ticket $ticket)
+    public function update(Request $request, Organization $organization)
     {
         //
     }
@@ -56,7 +58,7 @@ class TicketController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Ticket $ticket)
+    public function destroy(Organization $organization)
     {
         //
     }

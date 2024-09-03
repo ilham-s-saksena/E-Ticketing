@@ -22,5 +22,9 @@ class EventController extends Controller
         return view('event.checkout', compact('tickets', 'ticketOrder'));
     }
 
+    public function event()
+{
+    return view('users.event');
+}
     
 }
