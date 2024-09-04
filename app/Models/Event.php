@@ -24,6 +24,7 @@ class Event extends Model
         'event_date',
         'time_start',
         'time_end',
+        'organization_id'
     ];
 
     public function organizations(): BelongsTo

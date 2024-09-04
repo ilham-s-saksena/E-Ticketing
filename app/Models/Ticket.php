@@ -17,7 +17,8 @@ class Ticket extends Model
         'name',
         'price',
         'description',
-        'discount'
+        'discount',
+        'event_id'
     ];
     
     public function events(): BelongsTo
