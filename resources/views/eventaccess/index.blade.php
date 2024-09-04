@@ -16,8 +16,8 @@
 
 @foreach ($eventAccess as $access)
 
-<div id="ticket-{{$access->id}}" class=" bg-gray-400 max-w-sm w-full p-2">
-    <div class="bg-white rounded-lg p-4 overflow-hidden">
+<div id="ticket-{{$access->id}}" class=" bg-gray-400 max-w-sm w-full p-2 bg-center bg-no-repeat bg-cover" style="background-image: url('{{$access->purchases->tickets->events->flyer}}')">
+    <div class="bg-white/80 rounded-lg p-4 overflow-hidden">
 
         <div class="text-center">
             <h1 class="text-lg font-bold text-purple-600">E-Ticketing.ID</h1>

@@ -161,7 +161,10 @@
                 <div class="justify-between items-center pt-0 space-y-4 sm:flex sm:space-y-0">
                     <div class="items-center space-y-4 sm:space-x-4 sm:flex sm:space-y-0 justify-center w-full">
                         <button data-modal-toggle="buy-ticket" type="button"  class="py-2 px-4 w-full text-sm font-medium text-gray-500 bg-white rounded-lg border border-gray-200 sm:w-auto hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-blue-300 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">Cancel</button>
+                        @if ($event->tickets->isNotEmpty())
+                            
                         <button type="submit" class="py-2 px-4 w-full text-sm font-medium text-center text-white rounded-lg bg-blue-700 sm:w-auto hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Confirm</button>
+                        @endif
                     </div>
                 </div>
             </div>
