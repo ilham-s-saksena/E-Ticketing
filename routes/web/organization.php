@@ -7,5 +7,6 @@ Route::controller(OrganizationController::class)->prefix('organization')
         
         Route::middleware('isAdmin')->group(function(){
             Route::get('/', 'organization')->name('organization');
+            Route::post('/form', 'organization_form')->name('organization.form');
         });
     });

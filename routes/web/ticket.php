@@ -7,5 +7,7 @@ Route::controller(TicketController::class)->prefix('ticket')
         
         Route::middleware(['isAdmin', 'organization'])->group(function(){
             Route::get('/', 'ticket')->name('ticket');
+            Route::post('/form', 'ticket_form')->name('ticket.form');
+            Route::get('/delete/{id}', 'ticket_delete')->name('ticket.delete');
         });
     });

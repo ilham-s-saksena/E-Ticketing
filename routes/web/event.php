@@ -9,5 +9,7 @@ Route::controller(EventController::class)->prefix('event')
 
         Route::middleware(['isAdmin', 'organization'])->prefix('admin')->group(function(){
             Route::get('event', 'event')->name('event');
+            Route::get('event/create', 'event_create')->name('event.create');
+            Route::post('event/create/form', 'event_form')->name('event.form');
         });
     });
