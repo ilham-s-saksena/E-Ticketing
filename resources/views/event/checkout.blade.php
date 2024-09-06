@@ -28,7 +28,7 @@
             <div class="mx-auto grid max-w-screen-xl rounded-lg bg-gray-50 p-2 dark:bg-gray-800 lg:grid-cols-12 lg:gap-4 lg:p-4 xl:gap-4 shadow place-items-center">
                 <div class="lg:col-span-5 lg:mt-0">
                     <a href="#">
-                        <img class=" h-56 w-56 rounded shadow" src="https://flowbite.s3.amazonaws.com/blocks/e-commerce/imac-components.svg" alt="peripherals" />
+                    <div class="h-56 w-56 rounded shadow bg-contain bg-center bg-no-repeat" style="background-image: url('{{$event->flyer}}')"></div>
                     </a>
                     </div>
                     <div class="me-auto place-self-center lg:col-span-7">

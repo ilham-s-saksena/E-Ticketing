@@ -15,10 +15,32 @@
     <div class="mx-auto max-w-5xl">
       <h2 class="text-xl font-semibold text-gray-900 dark:text-white sm:text-2xl">{{ $event->name }}</h2>
       <div class="my-8 xl:mb-16 xl:mt-12">
-        <img class="w-full dark:hidden" src="https://flowbite.s3.amazonaws.com/blocks/e-commerce/imac-showcase.svg" alt="" />
-        <img class="hidden w-full dark:block" src="https://flowbite.s3.amazonaws.com/blocks/e-commerce/imac-showcase-dark.svg" alt="" />
+        <div class="w-full bg-contain bg-center bg-no-repeat h-96" style="background-image: url('{{$event->flyer}}')"></div>
       </div>
       <div class="mx-auto max-w-2xl space-y-6">
+      <p class="text-base font-semibold text-gray-900 dark:text-white">Event By</p>
+      <div>
+          <div class="flex items-start border-b pb-2">
+              <div class="h-20 w-20 bg-center bg-cover bg-no-repeat" style="background-image: url('{{$event->organizations->photo}}')"></div>
+              <div class="flex-1">
+                  <p class="font-semibold text-gray-800 ">
+                      {{ $event->organizations->name }}
+                    </p>
+                    <p class=" text-gray-500 text-sm">
+                        {{ $event->organizations->description }}
+                    </p>
+                    <ul class="mt-2">
+                      <li class="font-semibold text-gray-800 ">
+                          Contact Person : {{ $event->organizations->cp_name }}
+                      </li>
+                      <li class="font-semibold text-gray-500 text-sm">
+                          Phone : {{ $event->organizations->cp_phone }} 
+                      </li>
+  
+                  </ul>
+                </div>
+            </div>
+        </div>
         <p class="text-base font-normal text-gray-500 dark:text-gray-400">{{ $event->description }}</p>
 
         

@@ -1,6 +1,6 @@
 @extends('users.navigation')
 @section('content')
-<nav class="flex mb-5" aria-label="Breadcrumb">
+<nav class="flex" aria-label="Breadcrumb">
   <ol class="inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
     <li class="inline-flex items-center">
       <a href="/event/admin/event/" class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600 dark:text-gray-400 dark:hover:text-white">
@@ -12,8 +12,12 @@
     </li>
   </ol>
 </nav>
+<div class="text-sm text-gray-500">
+    <p>Anda dapat membuat sebuah Event disini, Event tidak dapat di Edit kembali, Pastikan data yang anda masukkan sudah benar.</p>
+    <p>Event dapat dihapus, namun tidak dapat di hapus apabila sudah ada tiket yang terjual.</p>
+</div>
 
-<a href="/event/admin/event/create" class="flex w-fit items-center space-x-2 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center" type="button">
+<a href="/event/admin/event/create" class="mt-5 flex w-fit items-center space-x-2 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center" type="button">
     <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
     <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 0 0 3 8.25v10.5A2.25 2.25 0 0 0 5.25 21h10.5A2.25 2.25 0 0 0 18 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
     </svg>
@@ -178,7 +182,7 @@
                     <div class="relative">
                         <div class="absolute left-1.5 bottom-2.5 font-bold text-gray-500">Rp.</div>
                         <label for="price" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Ticket Price</label>
-                        <input type="number" name="price" id="price" class="pl-8 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="100.000" required />
+                        <input type="text" name="price" id="price" class="pl-8 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="100.000" required />
                     </div>
                     <div class="mb-5">
                         <label for="description" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
