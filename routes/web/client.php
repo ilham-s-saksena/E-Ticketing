@@ -1,11 +1,14 @@
 <?php
 
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
-
-Route::view('dashboard', 'users.dashboard')
-    ->middleware(['auth', 'verified'])
-    ->name('dashboard');
+Route::controller(UserController::class)
+    ->group(function () {
+        Route::get('dashboard', 'users_dashboard')
+        ->middleware(['auth', 'verified'])
+        ->name('dashboard');
+    });
 
 Route::view('profile', 'profile')
     ->middleware(['auth'])

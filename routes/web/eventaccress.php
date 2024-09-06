@@ -7,6 +7,7 @@ Route::controller(EventAccessController::class)->prefix('eventaccess')
     ->group(function () {
         Route::get('/payment/{token}', 'eventaccess')->name('pay-success');
         Route::post('send-tickets', 'uploadTicketImage')->name('send-tickets');
+        Route::post('/create/admin', 'create_admin')->name('eventaccess.admin');
     });
 
 
