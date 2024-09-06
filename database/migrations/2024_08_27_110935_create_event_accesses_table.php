@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('event_accesses', function (Blueprint $table) {
             $table->ulid('id')->primary();
-            $table->foreignUlid('purchase_id')->references('id')->on('purchases');
+            $table->foreignUlid('purchase_id');
             $table->string('qr');
             $table->boolean('isEntry')->default(false);
             $table->timestamps();

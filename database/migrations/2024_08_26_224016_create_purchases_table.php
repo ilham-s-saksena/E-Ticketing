@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('purchases', function (Blueprint $table) {
             $table->ulid('id')->primary();
             $table->foreignUlid('ticket_id')->references('id')->on('tickets');
-            $table->foreignUlid('buyer_id')->references('id')->on('buyers');
+            $table->foreignUlid('buyer_id')->nullable();
             $table->integer('qty');
             $table->string('token', 250);
             $table->enum('status', ['unpaid', 'paid', 'experied'])->default('unpaid');
