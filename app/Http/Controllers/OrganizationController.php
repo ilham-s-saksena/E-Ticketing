@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Organization;
+use App\Services\OrganizationService;
+use Auth;
 use Illuminate\Http\Request;
 
 class OrganizationController extends Controller
@@ -13,6 +15,17 @@ class OrganizationController extends Controller
     public function organization()
     {
         return view('users.organization');
+    }
+
+    public function organization_form(
+        Request $request,
+        OrganizationService $organizationService
+        )
+    {
+        // dd($request->all());
+        $user = Auth::user();
+        $organizationService->upadteOrCreate($request->all(), $user);
+        return redirect()->back()->with('message', 'Organization successfuly saved');
     }
 
     /**

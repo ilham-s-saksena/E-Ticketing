@@ -7,7 +7,8 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
-    public function user_dashboard(Request $request, UserService $userService)
+    public function users_dashboard(Request $request, UserService $userService)
     {
+        return view('users.dashboard');
     }
 }

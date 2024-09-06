@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\EventAccess;
 use App\Services\EventAccessService;
 use App\Services\PurchaseService;
+use App\Services\TicketService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Mail;
@@ -63,9 +64,16 @@ class EventAccessController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create_admin(
+        Request $request, 
+        EventAccessService $eventAccessService,
+        TicketService $ticketService        
+        )
     {
-        //
+        $jumlah = $request->jumlah;
+        $eventAccess = $eventAccessService->generate_admin($jumlah, $request->ticket_id);
+        $ticket = $ticketService->find($request->ticket_id);
+        return view('users.eventAccessCreate', compact('eventAccess', 'ticket'));
     }
 
     /**
