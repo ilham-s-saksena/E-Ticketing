@@ -57,7 +57,7 @@ class EventAccessController extends Controller
         $purchaseService->updateSendedTicket($purchaseId);
             return response()->json(['success' => true, 'message' => 'All tickets sent successfully!']);
         } catch (\Exception $e) {
-            return response()->json(['success' => false, 'message' => 'Failed to send tickets. Please try again.']);
+            return response()->json(['success' => false, 'message' => 'Failed to send tickets. Please try again.'. $e->getMessage()]);
         }
     }
 

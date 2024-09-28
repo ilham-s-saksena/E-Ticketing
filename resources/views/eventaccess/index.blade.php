@@ -187,7 +187,7 @@
           if (data.success) {
               alert('E-Tiket berhasil dikirim ke email: ' + email);
           } else {
-              alert('Terjadi kesalahan saat mengirim tiket. Silakan coba lagi.');
+            alert('Terjadi kesalahan saat mengirim tiket. Silakan coba lagi. Debug Info: ' + (data.message || 'Tidak ada pesan error.'));
           }
       })
       .catch((error) => {
